@@ -1,3 +1,31 @@
+class Bank:
+
+    def __init__(self):
+        self.accounts={}    
+        self.next_account_number=1001
+
+
+    def create_account(self,holder_name, password):
+        account_number = self.next_account_number
+        self.next_account_number+=1
+
+        account = Account(holder_name, account_number)
+        account.set_password(password)
+
+        self.accounts[account_number] = account
+
+        return account
+
+
+    def find_account(self, account_number):
+        if account_number not in self.accounts:
+            raise ValueError("Account not found")
+        else:
+            return self.accounts[account_number]
+
+
+
+
 class Account:
 
     def __init__(self, holder_name, account_number):
@@ -39,9 +67,14 @@ class Account:
         return password == self.__password
 
 
-p1 = Account("vbp",1500)
-p1.set_password(1234)
-p1.deposit(1000)
-p1.withdraw(500, 1234)
-print(p1.get_balance())
 
+bank = Bank()
+acc1 = bank.create_account("vbp", 1234)
+acc2 = bank.create_account("buddy", 1234)
+
+print(acc1.account_number)
+print(acc2.account_number)
+
+found = bank.find_account(acc1.account_number)
+print(found.get_balance())
+print(found.holder_name)
