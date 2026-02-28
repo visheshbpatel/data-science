@@ -1,8 +1,13 @@
+from datetime import datetime, date, timedelta
+
+
 class Bank:
 
     def __init__(self):
         self.accounts={}    
         self.next_account_number=1001
+        self.transactions=[]
+        self.next_transaction_id=1
 
 
     def create_account(self,holder_name, password):
@@ -24,6 +29,46 @@ class Bank:
             return self.accounts[account_number]
 
 
+
+    def transfer(self, sender_acc_no, receiver_acc_no, amount, password):
+    
+        if sender_acc_no == receiver_acc_no:
+            raise ValueError("Can't Transfer in same account")
+        
+        sender = self.find_account(sender_acc_no)
+        recevier = self.find_account(receiver_acc_no)
+
+        sender.withdraw(amount,password)
+        recevier.deposit(amount) 
+
+        self.record_transaction("Transfer", amount, sender_acc_no, receiver_acc_no)
+
+
+    def record_transaction(self, type, amount, sender_acc, recevier_acc):
+        
+        transaction = Transaction(
+            self.next_transaction_id, 
+            type,
+            amount,
+            sender_acc,
+            recevier_acc
+        )
+
+        self.transactions.append(transaction)
+        self.next_transaction_id+=1
+
+
+
+class Transaction:
+
+    def __init__(self, transaction_id, type, amount, sender, recevier, ):
+        self.transaction_id = transaction_id
+        self.type = type
+        self.amount = amount
+        self.sender = sender
+        self.recevier = recevier
+        self.timestamp = datetime.now()
+        
 
 
 class Account:
@@ -72,9 +117,12 @@ bank = Bank()
 acc1 = bank.create_account("vbp", 1234)
 acc2 = bank.create_account("buddy", 1234)
 
-print(acc1.account_number)
-print(acc2.account_number)
 
-found = bank.find_account(acc1.account_number)
-print(found.get_balance())
-print(found.holder_name)
+
+
+bank = Bank()
+
+# Create accounts
+acc1 = bank.create_account("vbp", 1234)
+acc2 = bank.create_account("buddy", 5678)
+
