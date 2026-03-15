@@ -7,7 +7,8 @@ while True:
     print("1. Total Runs")
     print("2. Average Runs")
     print("3. Highest Score")
-    print("4. Exit")
+    print("4. Best Player")
+    print("5. Exit")
     print("==========================\n")
 
 
@@ -46,8 +47,18 @@ while True:
         print(f"Highest Score of {runs} by {player}")
 
 
-
     elif choice=="4":
+
+        print("\nYou choose Best Player\n")
+
+        result = analyzer.best_player()
+
+        for i in result:
+            print(i)
+
+
+
+    elif choice=="5":
 
         print("\nThank you for using the Service")
         print("Exit.....\n")
