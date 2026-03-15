@@ -34,3 +34,21 @@ def highest_score():
 
 
 
+def best_player():
+
+    L=[]
+
+    max_runs, max_run_player = highest_score()
+    L.append(f"Best Player: {max_run_player}")
+    L.append(f"Max runs by the player: {max_runs}")
+
+    avg_d = average_run()
+    avg_run = avg_d[max_run_player]
+    L.append(f"Average Runs by the player: {avg_run}")
+
+    d = total_runs()
+    tot_runs = d[max_run_player]
+    L.append(f"Total Runs by the player: {tot_runs}")
+
+
+    return L
