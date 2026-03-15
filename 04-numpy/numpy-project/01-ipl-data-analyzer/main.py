@@ -21,9 +21,12 @@ while True:
         
         result = analyzer.total_runs()
 
+        print(f'{"Player":<15} {"Runs"}')
+        print("-"*20)
+
 
         for player,run in result.items():
-            print(f'player:{player}  Runs:{run}')
+            print(f'{player:<15} {run}')
 
     
 
@@ -33,8 +36,11 @@ while True:
 
         result = analyzer.average_run()
 
+        print(f'{"Player":<15}{"Avg Runs"}')
+        print("-"*23)
+
         for player,run in result.items():
-            print(f'Player: {player} Average Runs: {run}')
+            print(f'{player:<17} {run}')
 
 
 
