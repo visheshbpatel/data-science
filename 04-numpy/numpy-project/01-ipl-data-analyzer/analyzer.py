@@ -39,16 +39,26 @@ def best_player():
     L=[]
 
     max_runs, max_run_player = highest_score()
-    L.append(f"{"Best Player:":<15} {max_run_player}")
-    L.append(f"{"Max runs:":<15} {max_runs}")
+    L.append(f'{"Best Player:":<15} {max_run_player}')
+    L.append(f'{"Max runs:":<15} {max_runs}')
 
     avg_d = average_run()
     avg_run = avg_d[max_run_player]
-    L.append(f"{"Average Runs:":<15} {avg_run}")
+    L.append(f'{"Average Runs:":<15} {avg_run:.2f}')
 
     d = total_runs()
     tot_runs = d[max_run_player]
-    L.append(f"{"Total Runs:":<15} {tot_runs}")
+    L.append(f'{"Total Runs:":<15} {tot_runs}')
 
 
     return L
+
+
+def fifties():
+    count = np.sum(runs >= 50, axis=1)
+
+    d = dict(zip(players, count))
+
+    return dict(sorted(d.items(), key=lambda x: x[1], reverse=True))
+
+
