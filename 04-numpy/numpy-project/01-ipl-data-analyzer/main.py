@@ -8,7 +8,8 @@ while True:
     print("2. Average Runs")
     print("3. Highest Score")
     print("4. Best Player")
-    print("5. Exit")
+    print("5. Most Fifties")
+    print("6. Exit")
     print("==========================\n")
 
 
@@ -40,7 +41,7 @@ while True:
         print("-"*23)
 
         for player,run in result.items():
-            print(f'{player:<17} {run}')
+            print(f'{player:<17} {run:.2f}')
 
 
 
@@ -63,8 +64,19 @@ while True:
             print(i)
 
 
-
     elif choice=="5":
+
+        result =analyzer.fifties()
+
+        print(f'{"Player":<15} {"Fifties"}')
+        print("-"*23)
+
+        for player,run in result.items():
+            print(f'{player:<15} {run}')
+
+
+
+    elif choice=="6":
 
         print("\nThank you for using the Service")
         print("Exit.....\n")
