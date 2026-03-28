@@ -1,11 +1,13 @@
+import pandas as pd
 import numpy as np
 
-players = np.array(['Sachin','Dhoni', 'Kohli', 'Rohit', 'Suryakumar'])
 
-runs = np.array([
-    [45, 32, 67, 12, 89],
-    [63, 56, 78, 34, 103],
-    [67, 89, 12, 90, 54],
-    [34, 21, 45, 67, 88],
-    [44, 10, 34, 37, 64],
-])
+
+data = np.genfromtxt(
+    '04-numpy/numpy-project/01-ipl-data-analyzer/dataset/runs.csv',
+    delimiter=',',
+    dtype=str
+)
+
+players = data[1:, 0]
+runs = data[1:, 1:].astype(int)
