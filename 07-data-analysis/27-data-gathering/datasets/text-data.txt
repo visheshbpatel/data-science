@@ -1,0 +1,29 @@
+Q1. What is Python?
+Answer: Python is a high-level programming language used for web development, AI, data science, and automation.
+
+Q2. What is Pandas?
+Answer: Pandas is a Python library used for data analysis and data manipulation.
+
+Q3. What is NumPy?
+Answer: NumPy is a Python library used for numerical and array operations.
+
+Q4. What is Machine Learning?
+Answer: Machine Learning is a field of AI where systems learn patterns from data.
+
+Q5. What is a Variable?
+Answer: A variable is a container used to store data values.
+
+Q6. What is a List in Python?
+Answer: A list is a collection of ordered and mutable elements.
+
+Q7. What is a Function?
+Answer: A function is a reusable block of code that performs a specific task.
+
+Q8. What is Data Science?
+Answer: Data Science is the process of extracting insights from data using algorithms and analysis.
+
+Q9. What is a CSV file?
+Answer: A CSV file stores data in comma-separated format.
+
+Q10. What is an Excel file?
+Answer: An Excel file is a spreadsheet file used to store tabular data with formatting and formulas.
