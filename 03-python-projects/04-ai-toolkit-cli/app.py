@@ -30,10 +30,7 @@ def generate_prompt(task,text):
         exit()
 
 
-
-prompt = generate_prompt(args.task,args.text)
-
-api_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("API_KEY")
 base_url = os.getenv("BASE_URL")
 model = os.getenv("MODEL")
 
@@ -42,14 +39,24 @@ client = OpenAI(
     base_url=base_url)
 
 
-response = client.chat.completions.create(
-    model=model,
-    messages=[
-        {
-            "role":'user',
-            "content": prompt
-        }
-    ]
-)
+def generate_response(prompt):
 
-print(response.choices[0].message.content)
+    
+    
+    response = client.chat.completions.create(
+        model=model,
+        messages=[
+            {
+                "role":'user',
+                "content": prompt
+            }
+        ]
+    )
+
+    return response.choices[0].message.content
+
+
+prompt = generate_prompt(args.task,args.text)
+response = generate_response(prompt)
+
+print(response)
