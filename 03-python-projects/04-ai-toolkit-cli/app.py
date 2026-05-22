@@ -3,23 +3,31 @@ import argparse
 from openai import OpenAI
 from dotenv import load_dotenv
 
-parser = argparse.ArgumentParser()
-load_dotenv()
 
-parser.add_argument(
-    "task",
-    choices=["summarize", "translate", "sentiment-analysis"],
-    help="Task to perform"
-)
-parser.add_argument("text")
-parser.add_argument("--language")
+def setup_parser():
 
+    parser = argparse.ArgumentParser(
+        description="AI-powered CLI toolkit for summarization, translation, and sentiment analysis")
+
+    parser.add_argument(
+        "task",
+        choices=["summarize", "translate", "sentiment-analysis"],
+        help="Task to perform"
+    )
+    parser.add_argument(
+        "text",
+        help="Text input for processing"
+        )
+    parser.add_argument(
+        "--language",
+        default="hindi",
+        help="Language for translation"
+        )
+
+    return parser
 
 
 def generate_prompt(task,text,language):
-
-    if language is None:
-        language="hindi"
 
     if task == "summarize":
         prompt = f"Summarize this text: {text}"
@@ -54,6 +62,9 @@ def generate_response(model,client, prompt):
 
 
 def initialize_client():
+
+    load_dotenv()
+
     api_key = os.getenv("API_KEY")
     base_url = os.getenv("BASE_URL")
     model = os.getenv("MODEL")
@@ -81,6 +92,7 @@ def initialize_client():
 
 def main():
 
+    parser = setup_parser()
     args = parser.parse_args()
 
     prompt = generate_prompt(args.task,args.text,args.language)
@@ -92,4 +104,3 @@ def main():
 
 if __name__ ==  "__main__":
     main()
-
