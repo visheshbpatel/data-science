@@ -6,7 +6,10 @@ from dotenv import load_dotenv
 parser = argparse.ArgumentParser()
 load_dotenv()
 
-parser.add_argument("task")
+parser.add_argument(
+    "task",
+    choices=["summarize", "translate", "sentiment-analysis"]
+)
 parser.add_argument("text")
 parser.add_argument("--language")
 
@@ -16,7 +19,7 @@ args = parser.parse_args()
 def generate_prompt(task,text,language):
 
     if language is None:
-        language="Hindi"
+        language="hindi"
 
     if task == "summarize":
         prompt = f"Summarize this text: {text}"
@@ -29,10 +32,6 @@ def generate_prompt(task,text,language):
     elif task == "sentiment-analysis":
         prompt = f"Classify this text as Positive, Negative, or Neutral: {text}"
         return prompt
-
-    else:
-        print("Please provide valid task or Text")
-        exit()
 
 
 def generate_response(model,client, prompt):
@@ -83,5 +82,5 @@ def initialize_client():
 prompt = generate_prompt(args.task,args.text,args.language)
 model,client = initialize_client()
 response = generate_response(model,client,prompt)
-
 print(response)
+
