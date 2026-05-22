@@ -8,12 +8,12 @@ load_dotenv()
 
 parser.add_argument(
     "task",
-    choices=["summarize", "translate", "sentiment-analysis"]
+    choices=["summarize", "translate", "sentiment-analysis"],
+    help="Task to perform"
 )
 parser.add_argument("text")
 parser.add_argument("--language")
 
-args = parser.parse_args()
 
 
 def generate_prompt(task,text,language):
@@ -79,8 +79,17 @@ def initialize_client():
         return model,client
 
 
-prompt = generate_prompt(args.task,args.text,args.language)
-model,client = initialize_client()
-response = generate_response(model,client,prompt)
-print(response)
+def main():
+
+    args = parser.parse_args()
+
+    prompt = generate_prompt(args.task,args.text,args.language)
+    model,client = initialize_client()
+    response = generate_response(model,client,prompt)
+
+    print(response)
+
+
+if __name__ ==  "__main__":
+    main()
 
