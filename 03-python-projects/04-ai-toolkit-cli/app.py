@@ -30,15 +30,48 @@ def setup_parser():
 def generate_prompt(task,text,language):
 
     if task == "summarize":
-        prompt = f"Summarize this text: {text}"
+        prompt = f"""
+                    Summarize the following text into exactly 3 concise bullet points.
+
+                    Rules:
+                    - Include only the most important information
+                    - Keep each bullet short and clear
+                    - Do not add extra explanations
+
+                    Text:
+                    {text}
+                """
         return prompt
+    
 
     elif task == "translate":
-        prompt = f"Translate this text into {language}: {text}"
+        prompt = f"""
+                    Translate the following text into {language}.
+
+                    Rules:
+                    - Only return the translated text
+                    - Do not add explanations
+                    - Do not add notes or extra formatting
+
+                    Text:
+                    {text}
+                """
         return prompt
 
+
     elif task == "sentiment-analysis":
-        prompt = f"Classify this text as Positive, Negative, or Neutral: {text}"
+        prompt = f"""
+                    Analyze the sentiment of the following text.
+
+                    Instructions:
+                    - Identify whether the sentiment is Positive, Negative, or Neutral
+                    - Briefly explain the reason for the sentiment
+                    - Keep the response concise and clear
+                    - Do not add unnecessary information
+
+                    Text:
+                    {text}
+                """
         return prompt
 
 
