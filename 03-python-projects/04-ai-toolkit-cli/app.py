@@ -80,7 +80,13 @@ def generate_response(model,client, prompt):
     try:
         response = client.chat.completions.create(
             model=model,
+            temperature=0.3,
+            max_tokens=300,
             messages=[
+                {
+                    "role":"system",
+                    "content":"You are a professional AI assistant specialized in summarization, translation, and sentiment analysis. Follow instructions carefully and provide clean, accurate responses."
+                },
                 {
                     "role":'user',
                     "content": prompt
