@@ -1,7 +1,17 @@
 import os
+import logging
 import argparse
 from openai import OpenAI
 from dotenv import load_dotenv
+
+
+logging.basicConfig(
+    filename="app.log",
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s"
+)
+
+logging.getLogger("httpx").setLevel(logging.WARNING)
 
 
 def setup_parser():
@@ -45,18 +55,20 @@ def generate_prompt(task,text,language):
     
 
     elif task == "translate":
-        prompt = f"""
-                    Translate the following text into {language}.
+        if language=="hindi":
+            logging.warning("Using default translation language: hindi")
+            prompt = f"""
+                        Translate the following text into {language}.
 
-                    Rules:
-                    - Only return the translated text
-                    - Do not add explanations
-                    - Do not add notes or extra formatting
+                        Rules:
+                        - Only return the translated text
+                        - Do not add explanations
+                        - Do not add notes or extra formatting
 
-                    Text:
-                    {text}
-                """
-        return prompt
+                        Text:
+                        {text}
+                    """
+            return prompt
 
 
     elif task == "sentiment-analysis":
@@ -77,6 +89,8 @@ def generate_prompt(task,text,language):
 
 def generate_response(model,client, prompt):
 
+    logging.info("Sending request to AI model")
+
     try:
         response = client.chat.completions.create(
             model=model,
@@ -94,13 +108,17 @@ def generate_response(model,client, prompt):
             ]
         )
 
+        logging.info("Received response from AI model")
         return response.choices[0].message.content
     
     except Exception as e:
+        logging.error(f"API request failed: {e}")
         return f"Error:{e}"
 
 
 def initialize_client():
+
+    logging.info("Initializing AI client")
 
     load_dotenv()
 
@@ -109,15 +127,15 @@ def initialize_client():
     model = os.getenv("MODEL")
 
     if api_key is None:
-        print("Missing API_KEY in .env file")
+        logging.error("Missing API_KEY in .env file")
         exit()
 
     elif base_url is None:
-        print("Missing BASE_URL in .env file")
+        logging.error("Missing BASE_URL in .env file")
         exit()
 
     elif model is None:
-        print("Missing MODEL in .env file")
+        logging.error("Missing MODEL in .env file")
         exit()
 
     else:
@@ -130,6 +148,9 @@ def initialize_client():
 
 
 def main():
+
+    logging.info("-"*50)
+    logging.info("Starting AI Toolkit CLI Session")
 
     parser = setup_parser()
     args = parser.parse_args()
