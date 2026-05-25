@@ -21,8 +21,6 @@ async def ask_groq(prompt):
         ]
     }
 
-    print(url)
-
     async with httpx.AsyncClient() as client:
 
         response = await client.post(
