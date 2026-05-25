@@ -57,13 +57,7 @@ async def ask_gemini(prompt):
             ["content"]["parts"][0]["text"]
         )
 
-        return url
-
         return {
             "provider": "Gemini",
             "response": content
         }
-    
-
-
-ask_gemini("hello ai")
