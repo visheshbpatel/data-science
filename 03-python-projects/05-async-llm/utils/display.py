@@ -1,5 +1,6 @@
 from rich.console import Console
-from rich.table import Table
+from rich.panel import Panel
+from rich.markdown import Markdown
 
 
 console = Console()
@@ -7,21 +8,24 @@ console = Console()
 
 def display_results(results):
 
-    table = Table(title="LLM Response Comparison")
-
-    table.add_column("Provider", style="cyan", no_wrap=True)
-    table.add_column("Response", style="white")
+    console.rule("[bold blue]LLM Response Comparison[/bold blue]")
 
     for result in results:
 
         provider = result["provider"]
 
         if "response" in result:
-            response = result["response"]
+            content = result["response"]
 
         else:
-            response = str(result["error"])
+            content = str(result["error"])
 
-        table.add_row(provider, response)
+        panel = Panel(
+            Markdown(content),
+            title=provider,
+            border_style="cyan",
+            expand=False
+        )
 
-    console.print(table)
+        console.print(panel)
+        console.print()
