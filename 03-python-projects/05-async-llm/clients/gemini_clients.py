@@ -34,30 +34,38 @@ async def ask_gemini(prompt):
         ]
     }
 
-    async with httpx.AsyncClient() as client:
+    try: 
+        async with httpx.AsyncClient(timeout=20.0) as client:
 
-        response = await client.post(
-            url,
-            params=params,
-            headers=headers,
-            json=json_data
-        )
+            response = await client.post(
+                url,
+                params=params,
+                headers=headers,
+                json=json_data
+            )
 
-        if response.status_code != 200:
+            if response.status_code != 200:
+
+                return {
+                    "provider": "Gemini",
+                    "error": response.json()
+                }
+
+            data = response.json()
+
+            content = (
+                data["candidates"][0]
+                ["content"]["parts"][0]["text"]
+            )
 
             return {
                 "provider": "Gemini",
-                "error": response.json()
+                "response": content
             }
-
-        data = response.json()
-
-        content = (
-            data["candidates"][0]
-            ["content"]["parts"][0]["text"]
-        )
+        
+    except httpx.ReadTimeout:
 
         return {
             "provider": "Gemini",
-            "response": content
+            "error": "Request timed out"
         }
