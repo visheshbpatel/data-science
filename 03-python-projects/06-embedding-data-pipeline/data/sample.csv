@@ -1,6 +1,9 @@
 id,text
-1,Machine learning is a branch of artificial intelligence.
-2,Embeddings convert text into numerical vectors.
-3,Python is widely used in AI and machine learning.
-4,Transformers changed natural language processing.
-5,Vector databases store embeddings for similarity search.
+1,"  Machine learning is a branch of artificial intelligence.   "
+2,"Embeddings convert text into numerical vectors."
+3,
+4,"Python is widely used in AI and machine learning."
+5,"Python is widely used in AI and machine learning."
+6,"   Transformers changed natural language processing   "
+7,"Vector databases store embeddings for similarity search."
+8,"Embeddings convert text into numerical vectors."
