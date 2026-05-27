@@ -1,7 +1,9 @@
 import pandas as pd
+
 from cleaner import clean_dataframe
 from batcher import create_batches
 from embedder import generate_embeddings
+from storage import save_embeddings
 
 
 def run_pipeline():
@@ -15,23 +17,41 @@ def run_pipeline():
 
     print(f"Rows after cleaning: {len(df)}")
 
-    text = df['text'].tolist()
+    texts = df["text"].tolist()
 
-    batch_size=2
+    batch_size = 2
 
-    print("\nCreating Batches:")
+    print("\nCreating Batches:\n")
 
-    for batch_number , batch in enumerate(
-        create_batches(text, batch_size), start=1):
+    all_embeddings = []
 
+    for batch_number, batch in enumerate(
+        create_batches(texts, batch_size),
+        start=1
+    ):
         print(f"Batch {batch_number}")
         print(batch)
 
         embeddings = generate_embeddings(batch)
 
-        print(f"generated {len(embeddings)} embeddings")
+        print(
+            f"Generated {len(embeddings)} embeddings"
+        )
 
-        print(f"embedding dimensions: {len(embeddings[0])}")
+        print(
+            f"Embedding dimension: {len(embeddings[0])}"
+        )
 
+        for text, embedding in zip(batch, embeddings):
+            all_embeddings.append(
+                {
+                    "text": text,
+                    "embedding": embedding
+                }
+            )
 
         print()
+
+    save_embeddings(all_embeddings)
+
+    print("Embeddings saved successfully.")
