@@ -26,7 +26,12 @@ def run_pipeline():
 
     all_embeddings = []
 
-    batches = list(create_batches(texts, batch_size))
+    batches = list(
+        create_batches(
+            texts,
+            batch_size
+        )
+    )
 
     for batch_number, batch in enumerate(
         tqdm(
@@ -70,7 +75,3 @@ def run_pipeline():
     save_embeddings(all_embeddings)
 
     print("Embeddings saved successfully.")
-
-
-if __name__ == "__main__":
-    run_pipeline()
