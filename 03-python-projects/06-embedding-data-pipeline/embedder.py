@@ -1,4 +1,3 @@
-import asyncio
 from sentence_transformers import SentenceTransformer
 
 
@@ -7,13 +6,7 @@ model = SentenceTransformer(
 )
 
 
-async def generate_embeddings(text_batch):
-    loop = asyncio.get_event_loop()
-
-    embeddings = await loop.run_in_executor(
-        None,
-        model.encode,
-        text_batch
-    )
+def generate_embeddings(text_batch):
+    embeddings = model.encode(text_batch)
 
     return embeddings.tolist()
