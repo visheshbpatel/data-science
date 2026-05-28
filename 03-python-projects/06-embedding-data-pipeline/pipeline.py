@@ -1,4 +1,5 @@
 import pandas as pd
+from tqdm import tqdm
 
 from cleaner import clean_dataframe
 from batcher import create_batches
@@ -25,29 +26,43 @@ def run_pipeline():
 
     all_embeddings = []
 
+    batches = list(create_batches(texts, batch_size))
+
     for batch_number, batch in enumerate(
-        create_batches(texts, batch_size),
+        tqdm(
+            batches,
+            desc="Processing batches"
+        ),
         start=1
     ):
         print(f"Batch {batch_number}")
         print(batch)
 
-        embeddings = generate_embeddings(batch)
+        try:
+            embeddings = generate_embeddings(batch)
 
-        print(
-            f"Generated {len(embeddings)} embeddings"
-        )
+            print(
+                f"Generated {len(embeddings)} embeddings"
+            )
 
-        print(
-            f"Embedding dimension: {len(embeddings[0])}"
-        )
+            print(
+                f"Embedding dimension: {len(embeddings[0])}"
+            )
 
-        for text, embedding in zip(batch, embeddings):
-            all_embeddings.append(
-                {
-                    "text": text,
-                    "embedding": embedding
-                }
+            for text, embedding in zip(
+                batch,
+                embeddings
+            ):
+                all_embeddings.append(
+                    {
+                        "text": text,
+                        "embedding": embedding
+                    }
+                )
+
+        except Exception as error:
+            print(
+                f"Error processing batch {batch_number}: {error}"
             )
 
         print()
@@ -55,3 +70,7 @@ def run_pipeline():
     save_embeddings(all_embeddings)
 
     print("Embeddings saved successfully.")
+
+
+if __name__ == "__main__":
+    run_pipeline()
