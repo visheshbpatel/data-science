@@ -57,18 +57,18 @@ def generate_prompt(task,text,language):
     elif task == "translate":
         if language=="hindi":
             logging.warning("Using default translation language: hindi")
-            prompt = f"""
-                        Translate the following text into {language}.
+        prompt = f"""
+                    Translate the following text into {language}.
 
-                        Rules:
-                        - Only return the translated text
-                        - Do not add explanations
-                        - Do not add notes or extra formatting
+                    Rules:
+                    - Only return the translated text
+                    - Do not add explanations
+                    - Do not add notes or extra formatting
 
-                        Text:
-                        {text}
-                    """
-            return prompt
+                    Text:
+                    {text}
+                """
+        return prompt
 
 
     elif task == "sentiment-analysis":
