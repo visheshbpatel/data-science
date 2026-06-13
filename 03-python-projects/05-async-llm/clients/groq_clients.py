@@ -1,17 +1,17 @@
 import httpx
-from utils.config import(groq_api_key, groq_base_url, groq_model)
+from utils.config import(GROQ_API_KEY, GROQ_BASE_URL, GROQ_MODEL)
 
 async def ask_groq(prompt):
 
-    url = f"{groq_base_url}/chat/completions"
+    url = f"{GROQ_BASE_URL}/chat/completions"
 
     headers = {
-        "Authorization": f"Bearer {groq_api_key}",
+        "Authorization": f"Bearer {GROQ_API_KEY}",
         "Content-Type": "application/json"
     }
 
     json_data = {
-        "model": groq_model,
+        "model": GROQ_MODEL,
 
         "messages": [
             {
