@@ -2,8 +2,8 @@
 __pycache__/
 *.pyc
 .DS_Store
-
 anaconda_projects/
 extras/
 .env
 *.env
+venv/
