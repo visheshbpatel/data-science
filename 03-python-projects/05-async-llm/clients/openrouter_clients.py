@@ -48,5 +48,6 @@ async def ask_openrouter(prompt):
 
         return {
             "provider": "OpenRouter",
+            "model": OPENROUTER_MODEL,
             "response": content
         }

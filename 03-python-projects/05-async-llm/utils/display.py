@@ -13,6 +13,7 @@ def display_results(results):
     for result in results:
 
         provider = result["provider"]
+        model = result["model"]
 
         if "response" in result:
             content = result["response"]
@@ -22,7 +23,7 @@ def display_results(results):
 
         panel = Panel(
             Markdown(content),
-            title=provider,
+            title=f"{provider} | {model}",
             border_style="cyan",
             expand=False
         )

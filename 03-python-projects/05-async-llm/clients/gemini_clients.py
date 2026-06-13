@@ -60,6 +60,7 @@ async def ask_gemini(prompt):
 
             return {
                 "provider": "Gemini",
+                "model": GEMINI_MODEL,
                 "response": content
             }
         

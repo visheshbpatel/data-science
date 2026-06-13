@@ -42,5 +42,6 @@ async def ask_groq(prompt):
     
         return {
             "provider": "Groq",
+            "model": GROQ_MODEL,
             "response": content
         }
