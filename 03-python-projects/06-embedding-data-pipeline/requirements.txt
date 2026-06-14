@@ -1,0 +1,7 @@
+pandas
+numpy
+tqdm
+sentence-transformers
+torch
+transformers
+huggingface-hub
