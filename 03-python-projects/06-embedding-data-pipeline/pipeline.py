@@ -60,7 +60,7 @@ async def run_pipeline():
     print("Loading CSV...")
 
     df = pd.read_csv(
-        "data/sample.csv"
+        "data/large_sample.csv"
     )
 
     print(
