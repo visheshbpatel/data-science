@@ -6,12 +6,13 @@ The goal of these projects is to apply Python concepts in real programs and impr
 
 ## Projects
 
-1. **Banking System (CLI)** *(In Progress)*
+### 1. **Banking System (CLI)** *(In Progress)*
+
    A command line banking system built using Python.
 
    The project focuses on implementing basic banking operations and strengthening object oriented programming concepts.
 
-2. **QuickQR** *(Completed)*
+###  2. **QuickQR** *(Completed)*
    A command line tool to generate, decode, and scan QR codes using Python and OpenCV.
 
    Features:
@@ -20,7 +21,8 @@ The goal of these projects is to apply Python concepts in real programs and impr
    * Decode QR codes from image files
    * Scan QR codes using a webcam
 
-3. **NewsNow** *(Completed)*
+### 3. **NewsNow** *(Completed)*
+
    A command line application that fetches and displays the latest news articles.
 
    Features:
@@ -30,7 +32,8 @@ The goal of these projects is to apply Python concepts in real programs and impr
    * API integration
    * Command line interface
 
-4. **AI Toolkit CLI** *(Completed)*
+### 4. **AI Toolkit CLI** *(Completed)*
+
    A command line toolkit that combines multiple AI-powered utilities into a single application.
 
    Features:
@@ -41,7 +44,8 @@ The goal of these projects is to apply Python concepts in real programs and impr
    * Keyword extraction
    * Logging support
 
-5. **Async LLM CLI** *(Completed)*
+### 5. **Async LLM CLI** *(Completed)*
+
    A command line application that interacts with Large Language Models using asynchronous programming.
 
    Features:
@@ -51,7 +55,8 @@ The goal of these projects is to apply Python concepts in real programs and impr
    * Environment variable configuration
    * Modular project structure
 
-6. **Embedding Data Pipeline** *(Completed)*
+### 6. **Embedding Data Pipeline** *(Completed)*
+
    A production-inspired data pipeline for processing text data and generating embeddings.
 
    Features:
