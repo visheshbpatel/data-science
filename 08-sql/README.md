@@ -1,75 +1,176 @@
 # SQL
 
-This folder contains notes, examples, and practice code for learning SQL.
+This folder contains my SQL learning notes, hands-on practice, and solutions to SQL exercises.
 
 SQL (Structured Query Language) is used to store, retrieve, manipulate, and manage data in relational databases.
 
 It is one of the most important skills for data analysts, data scientists, and data engineers.
 
-## Topics Covered
+The topics are organized from SQL basics to advanced window functions using real datasets such as **Northwind**, **Drug Review**, **Insurance**, **Olympics**, and **IPL**.
 
-### 30 - Database Fundamentals
-1. Introduction to databases
-2. DBMS and RDBMS
-3. Tables, rows, and columns
-4. Primary keys
-5. Foreign keys
-6. Relationships between tables
+---
 
-### 31 - SQL DDL Commands
-1. CREATE
-2. ALTER
-3. DROP
-4. TRUNCATE
-5. RENAME
-6. Managing database structures
+# Folder Structure
 
-### 32 - SQL DML Commands
-1. SELECT
-2. INSERT
-3. UPDATE
-4. DELETE
-5. Filtering data
-6. Working with records
+## 30 - Database Fundamentals
 
-### 33 - SQL Grouping & Sorting
-1. ORDER BY
-2. GROUP BY
-3. HAVING
-4. COUNT()
-5. SUM()
-6. AVG()
-7. MIN() and MAX()
+- Databases
+- DBMS vs RDBMS
+- Tables, Rows, Columns
+- Primary Key
+- Foreign Key
+- Relationships
 
-### 34 - SQL Joins
-1. INNER JOIN
-2. LEFT JOIN
-3. RIGHT JOIN
-4. FULL JOIN
-5. CROSS JOIN
-6. SELF JOIN
+---
 
-## Approach
+## 31 - SQL DDL Commands
 
-The goal of this section is to build a strong foundation in SQL.
+- CREATE
+- ALTER
+- DROP
+- TRUNCATE
+- RENAME
 
-The focus is on:
-- Understanding relational databases
-- Learning SQL commands step by step
-- Writing queries to retrieve data
-- Manipulating and organizing data
-- Combining data from multiple tables
+---
 
-## Why SQL?
+## 32 - SQL DML Commands
 
-SQL is important for:
-- Data analysis
-- Business intelligence
-- Data engineering
-- Data science
-- Reporting and dashboards
+- SELECT
+- INSERT
+- UPDATE
+- DELETE
+- Filtering Records
 
-Most real-world data is stored in databases, making SQL an essential skill for working with data.
+---
+
+## 33 - SQL Grouping & Sorting
+
+- ORDER BY
+- GROUP BY
+- HAVING
+- Aggregate Functions
+  - COUNT()
+  - SUM()
+  - AVG()
+  - MIN()
+  - MAX()
+
+---
+
+## 34 - SQL Joins
+
+- INNER JOIN
+- LEFT JOIN
+- RIGHT JOIN
+- FULL JOIN
+- CROSS JOIN
+- SELF JOIN
+
+Hands-on practice using multiple tables.
+
+---
+
+## 35 - SQL Subqueries
+
+- Scalar Subqueries
+- Multi-row Subqueries
+- Correlated Subqueries
+- Nested Queries
+- Practical SQL Problems
+
+---
+
+## 36 - Window Functions
+
+- OVER()
+- PARTITION BY
+- ORDER BY
+- ROW_NUMBER()
+- RANK()
+- DENSE_RANK()
+- Running Total
+- Running Average
+- Cumulative Sum
+- Percentage of Total
+
+---
+
+## 37 - Advanced Window Functions
+
+Applied window functions on real datasets.
+
+Topics covered include:
+
+- Ranking
+- LAG()
+- CUME_DIST()
+- Running Average
+- Cumulative Sum
+- Percentage Change
+- Year-over-Year Analysis
+- Median Calculation
+- Percentage of Total
+- Advanced Analytical Queries
+
+---
+
+# Datasets Used
+
+During practice, I used multiple datasets including:
+
+- Northwind Database
+- Drug Review Dataset
+- Insurance Dataset
+- Olympics Dataset
+- IPL Ball-by-Ball Dataset
+
+---
+
+# Importing Large CSV Files into MySQL
+
+For very large datasets, importing through **MySQL Workbench** can be slow or fail. Instead, I used **Pandas** with **SQLAlchemy** to load data directly into MySQL.
+
+```python
+import pandas as pd
+from sqlalchemy import create_engine
+
+# Read CSV file
+df = pd.read_csv("your_dataset.csv")
+
+# Connect to MySQL
+engine = create_engine(
+    "mysql+pymysql://username:password@localhost/database_name"
+)
+
+# Import data into MySQL
+df.to_sql(
+    name="table_name",
+    con=engine,
+    if_exists="replace",   # replace | append | fail
+    index=False
+)
+
+print(f"Imported {len(df)} rows successfully.")
+```
+
+This approach is useful when working with datasets containing hundreds of thousands of rows.
+
+---
+
+# What I Learned
+
+- Database fundamentals
+- SQL query writing
+- Data filtering and sorting
+- Aggregate functions
+- Joins
+- Subqueries
+- Window functions
+- Analytical SQL queries
+- Working with real-world datasets
+- Importing large datasets into MySQL using Python
+
+---
 
 ## Repository Context
 
